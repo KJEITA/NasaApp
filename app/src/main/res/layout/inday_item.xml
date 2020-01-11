@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/date_time"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:text="01:09:09"
+        android:textSize="15dp"/>
+
+    <ImageView
+        android:id="@+id/planet_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/epic_1b_20151031074844"
+        />
+
+</LinearLayout>
