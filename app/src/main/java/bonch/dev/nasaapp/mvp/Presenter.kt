@@ -7,16 +7,13 @@ import bonch.dev.nasaapp.api.model.DateDTO
 import bonch.dev.nasaapp.api.model.PhotoDTO
 
 class Presenter : MainContract.Presenter, Application() {
-    lateinit var nasaService: NasaService
     lateinit var view: MainActivity
     lateinit var model: Model
 
     override fun onCreate() {
         super.onCreate()
 
-        nasaService = NasaService()
         model = Model(this)
-
     }
 
     override fun onItemWasClicked() {
@@ -31,11 +28,11 @@ class Presenter : MainContract.Presenter, Application() {
         this.view = view
     }
 
-    override fun getDate(): List<DateDTO> {
+    override suspend fun getDate(): List<DateDTO> {
         return model.loadDates()
     }
 
-    override fun getDay(date: String): List<PhotoDTO> {
+    override suspend fun getDay(date: String): List<PhotoDTO> {
         return model.loadDay(date)
     }
 }

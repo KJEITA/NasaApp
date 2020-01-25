@@ -33,7 +33,7 @@ class PhotoDTO {
     }
 
     fun getPhotoDate(): String {
-        return caption
+        return date
     }
 
     fun setPhotoDate(date: String) {
@@ -49,7 +49,7 @@ class PhotoDTO {
             .append(dateComponents[0]).append('/')
             .append(dateComponents[1]).append('/')
             .append(dateComponents[2]).append("/png/")
-            .append(image).append(".png?api_key=").append("bUPDj3NcY7TPvoShGVEilLJJmiYHzdqyirJx04n4")
+            .append(image).append(".png?api_key=").append("bUPDj3NcY7TPvoShGVEilLJJmiYHzdqyirJx04n4");
         return sb.toString()
     }
 }

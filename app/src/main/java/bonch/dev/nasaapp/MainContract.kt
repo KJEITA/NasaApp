@@ -16,12 +16,12 @@ interface MainContract {
         fun onItemWasClicked()
         fun onDestroy()
         fun setVieww(view: MainActivity)
-        fun getDate():List<DateDTO>
-        fun getDay(date:String):List<PhotoDTO>
+        suspend fun getDate():List<DateDTO>
+        suspend fun getDay(date:String):List<PhotoDTO>
     }
 
     interface Model{
-        fun loadDates():List<DateDTO>
-        fun loadDay(date:String):List<PhotoDTO>
+        suspend fun loadDates():List<DateDTO>
+        suspend fun loadDay(date:String):List<PhotoDTO>
     }
 }

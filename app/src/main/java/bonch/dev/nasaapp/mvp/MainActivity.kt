@@ -11,18 +11,20 @@ import bonch.dev.nasaapp.R
 import bonch.dev.nasaapp.adapters.DayAdapter
 import bonch.dev.nasaapp.adapters.InDayAdapter
 import bonch.dev.nasaapp.api.model.DateDTO
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-
+lateinit var app: Presenter
 class MainActivity : MainContract.View, AppCompatActivity() {
 
     lateinit var recyclerViewDay: RecyclerView
-    lateinit var recyclerViewInDay: RecyclerView
 
     private lateinit var adapterDay: DayAdapter
-    private lateinit var adapterInDay: InDayAdapter
 
     val fragmentManager = supportFragmentManager
-    lateinit var app:Presenter
+
+    val mainFragment = MainFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,20 +38,15 @@ class MainActivity : MainContract.View, AppCompatActivity() {
     }
 
     override fun showMain() {
-        fragmentManager.beginTransaction().add(R.id.fragment,
-            MainFragment()
+        fragmentManager.beginTransaction().add(
+            R.id.fragment,
+            mainFragment
         )
-            .commit()
+            .commitNow()
 
-        adapterDay = DayAdapter(applicationContext)
-        adapterInDay = InDayAdapter(applicationContext)
-
-        var fragmentView = fragmentManager.findFragmentById(R.id.fragment)?.view
-
-        if (fragmentView != null) {
-            setAdapters(fragmentView)
+        CoroutineScope(Dispatchers.Main).launch {
+            mainFragment.setDate(app.getDate())
         }
-        setDate(app.getDate())
     }
 
     override fun showInDay() {
@@ -58,19 +55,5 @@ class MainActivity : MainContract.View, AppCompatActivity() {
 
     override fun showInfo() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    private fun setAdapters(view: View) {
-        recyclerViewDay = view.findViewById(R.id.main_recycler_view)
-        recyclerViewDay.layoutManager = LinearLayoutManager(view.context)
-        recyclerViewDay.adapter = adapterDay
-
-        recyclerViewInDay = view.findViewById(R.id.dayRecyclerView)
-        recyclerViewInDay.layoutManager = LinearLayoutManager(view.context)
-        recyclerViewInDay.adapter = adapterDay
-    }
-
-    fun setDate(date: List<DateDTO>) {
-        adapterDay.setDatess(date)
     }
 }
