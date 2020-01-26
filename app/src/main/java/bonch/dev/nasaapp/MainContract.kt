@@ -8,12 +8,13 @@ interface MainContract {
 
     interface View {
         fun showMain()
-        fun showInDay()
-        fun showInfo()
+        fun showInDay(data:PhotoDTO)
+        fun showInfo(data:PhotoDTO)
     }
 
     interface Presenter {
-        fun onItemWasClicked()
+        fun onItemWasClicked(date: PhotoDTO)
+        fun showInfo(data: PhotoDTO)
         fun onDestroy()
         fun setVieww(view: MainActivity)
         suspend fun getDate():List<DateDTO>

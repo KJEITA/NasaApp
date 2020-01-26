@@ -2,7 +2,6 @@ package bonch.dev.nasaapp.mvp
 
 import android.app.Application
 import bonch.dev.nasaapp.MainContract
-import bonch.dev.nasaapp.api.NasaService
 import bonch.dev.nasaapp.api.model.DateDTO
 import bonch.dev.nasaapp.api.model.PhotoDTO
 
@@ -14,14 +13,16 @@ class Presenter : MainContract.Presenter, Application() {
         super.onCreate()
 
         model = Model(this)
+
+
     }
 
-    override fun onItemWasClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onItemWasClicked(data: PhotoDTO) {
+        view.showInDay(data)
     }
 
-    override fun onDestroy() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showInfo(data: PhotoDTO) {
+        view.showInfo(data)
     }
 
     override fun setVieww(view: MainActivity) {
@@ -34,5 +35,9 @@ class Presenter : MainContract.Presenter, Application() {
 
     override suspend fun getDay(date: String): List<PhotoDTO> {
         return model.loadDay(date)
+    }
+
+    override fun onDestroy() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

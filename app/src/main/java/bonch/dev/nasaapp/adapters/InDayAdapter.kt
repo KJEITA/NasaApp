@@ -1,8 +1,6 @@
 package bonch.dev.nasaapp.adapters
 
 import android.content.Context
-import android.media.Image
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bonch.dev.nasaapp.R
 import bonch.dev.nasaapp.api.model.PhotoDTO
+import bonch.dev.nasaapp.mvp.app
 import com.bumptech.glide.Glide
 
 class InDayAdapter(val context: Context) : RecyclerView.Adapter<ItemInDayHolder>() {
@@ -27,7 +26,8 @@ class InDayAdapter(val context: Context) : RecyclerView.Adapter<ItemInDayHolder>
         return ItemInDayHolder(
             LayoutInflater.from(context)
                 .inflate(R.layout.inday_item, parent, false)
-        )    }
+        )
+    }
 
     override fun getItemCount(): Int = dates.size
 
@@ -40,9 +40,14 @@ class InDayAdapter(val context: Context) : RecyclerView.Adapter<ItemInDayHolder>
 class ItemInDayHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val textDate = itemView.findViewById<TextView>(R.id.date_time)
     val imageView = itemView.findViewById<ImageView>(R.id.planet_image)
+
     fun bind(date: PhotoDTO) {
 
-        textDate.text = date.date
+        itemView.setOnClickListener() {
+            app.onItemWasClicked(date)
+        }
+
+        textDate.text = date.date.substring(11)
 
         Glide.with(itemView.context)
             .load(date.getImageUrl())

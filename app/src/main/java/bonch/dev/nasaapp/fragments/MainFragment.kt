@@ -1,4 +1,4 @@
-package bonch.dev.nasaapp
+package bonch.dev.nasaapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import bonch.dev.nasaapp.R
 import bonch.dev.nasaapp.adapters.DayAdapter
 import bonch.dev.nasaapp.api.model.DateDTO
-import bonch.dev.nasaapp.mvp.app
 
 class MainFragment : Fragment() {
 

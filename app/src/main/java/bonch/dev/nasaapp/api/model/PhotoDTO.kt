@@ -7,6 +7,7 @@ class PhotoDTO {
     var caption = ""
     var image = ""
     var date = ""
+    //data class dscovr_j2000_position(val x:Double, val y:Double, val z:Double)
 
     fun getPhotoIdentifier(): String {
         return identifier

@@ -1,9 +1,7 @@
 package bonch.dev.nasaapp.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -11,9 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bonch.dev.nasaapp.R
 import bonch.dev.nasaapp.api.model.DateDTO
-import bonch.dev.nasaapp.mvp.Presenter
 import bonch.dev.nasaapp.mvp.app
-import com.bumptech.glide.Glide
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -55,7 +51,7 @@ class ItemPostHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val recyclerViewDay = itemView.findViewById<RecyclerView>(R.id.dayRecyclerView)
         recyclerViewDay.layoutManager =
-            LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, true)
+            LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewDay.layoutManager
         recyclerViewDay.adapter = inDayAdapter
 
